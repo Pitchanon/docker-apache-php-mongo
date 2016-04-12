@@ -55,6 +55,7 @@ VOLUME ["/var/log/apache2"]
 
 EXPOSE 80 443
 
-CMD ["/run.sh"]
+#ADD sites-enabled/vhost.conf /etc/apache2/sites-enabled/
+#CMD ["/run.sh"]
 
 
