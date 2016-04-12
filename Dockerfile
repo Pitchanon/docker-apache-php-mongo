@@ -2,8 +2,6 @@ FROM ubuntu:14.04
 
 ENV ENVIRONMENT=docker
 
-#RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-
 #Mongo PHP driver version
 
 ENV MONGO_VERSION 2.2.7
@@ -48,22 +46,15 @@ RUN pecl install mongo-$MONGO_PHP_VERSION && \
     ln -s /etc/php5/mods-available/mcrypt.ini /etc/php5/cli/conf.d/mcrypt.ini && \
     ln -s /etc/php5/mods-available/mcrypt.ini /etc/php5/apache2/conf.d/mcrypt.ini
 
-#RUN apt-get install -y gearman php5-gearman
-
 RUN a2enmod headers php5 rewrite ssl vhost_alias
 RUN rm -f /etc/apache2/sites-enabled/000-default.conf
 
-# Add apache default vhost configuration
-#COPY ["sites-enabled/vhost.conf", "/etc/apache2/sites-enabled/"]
-#ADD sites-enabled/vhost.conf /etc/apache2/sites-enabled/
+ADD run.sh /run.sh
 
-#ADD run.sh /run.sh
-
-#VOLUME ["/var/log/apache2"]
+VOLUME ["/var/log/apache2"]
 
 EXPOSE 80 443
 
-#CMD ["/run.sh"]
-CMD ["apache2-foreground"]
+CMD ["/run.sh"]
 
 
