@@ -1,5 +1,7 @@
 FROM ubuntu:14.04
 
+MAINTAINER Pitchanon D <Pitchanon.d@gmail.com>
+
 ENV ENVIRONMENT=docker
 
 #Mongo PHP driver version
