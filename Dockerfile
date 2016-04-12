@@ -1,6 +1,5 @@
 FROM ubuntu:14.04
 
-ENV GITHUB_TOKEN=fc1541eddbd36e61f631327ed59a85a6d76a6002
 ENV ENVIRONMENT=docker
 
 #RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
@@ -56,31 +55,15 @@ RUN rm -f /etc/apache2/sites-enabled/000-default.conf
 
 # Add apache default vhost configuration
 #COPY ["sites-enabled/vhost.conf", "/etc/apache2/sites-enabled/"]
-ADD sites-enabled/vhost.conf /etc/apache2/sites-enabled/
+#ADD sites-enabled/vhost.conf /etc/apache2/sites-enabled/
 
-ADD run.sh /run.sh
+#ADD run.sh /run.sh
 
 #VOLUME ["/var/log/apache2"]
 
 EXPOSE 80 443
 
-CMD ["/run.sh"]
-
-################################
-
-
-COPY ["start_script.sh", "/"]
-
-RUN chmod +x /start_script.sh
-RUN mkdir /log-dev-docker.dev
-RUN chmod 777 /log-dev-docker.dev
-
-RUN mkdir -p /data/log/iotalk-admin.dev/
-
-WORKDIR /var/www/html
-
-CMD composer self-update
-CMD composer update
-CMD /start_script.sh
+#CMD ["/run.sh"]
+CMD ["apache2-foreground"]
 
 
