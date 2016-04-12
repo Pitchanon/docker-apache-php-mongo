@@ -58,4 +58,6 @@ EXPOSE 80 443
 #ADD sites-enabled/vhost.conf /etc/apache2/sites-enabled/
 #CMD ["/run.sh"]
 
+# grr, ENTRYPOINT resets CMD now
+ENTRYPOINT ["/bin/bash"]
 
