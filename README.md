@@ -1,4 +1,4 @@
-# docker-apache-php-mongo
+# Docker: apache php mongo
 
 - [Docker Hub](https://hub.docker.com/r/pitchanon/docker-apache-php-mongo/)
 
@@ -15,14 +15,18 @@
 ### Using this container as a base
 Use this container as a base for your application. Below is an example Dockerfile in which we add a VHost to the apache config:
 
-    FROM pitchanon/apache-php-mongo:latest
+```dockerfile
+FROM pitchanon/apache-php-mongo:latest
 
-    ...
+...
 
-    ADD vhost.conf /etc/apache2/sites-enabled/
+ADD vhost.conf /etc/apache2/sites-enabled/
 
-    CMD ["/run.sh"]
-    
+CMD ["/run.sh"]
+```
+
 ### Running
-    
-    docker run -d -v /host/www:/app -p 80 pitchanon/apache-php-mongo:latest
+
+```sh
+$ docker run -d -v /host/www:/app -p 80 pitchanon/apache-php-mongo:latest
+```
